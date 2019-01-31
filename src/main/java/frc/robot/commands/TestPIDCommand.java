@@ -32,7 +32,7 @@ public class TestPIDCommand extends Command {
   protected void execute() {
     //  Pushing the joysticks forward gives a negative Y value, whereas pushing them backward gives a positive Y value
     double speed = -Robot.oi.l_joy.getY();
-    if(Math.abs(speed) < DEADZONE) speed = 0;
+    if (Math.abs(speed) < DEADZONE) speed = 0;
     RobotMap.spark.set(speed);
   }
 

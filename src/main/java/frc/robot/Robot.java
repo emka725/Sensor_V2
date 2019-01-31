@@ -11,6 +11,8 @@ import frc.robot.OI;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.commands.TestPIDCommand;
 
+import com.revrobotics.ControlType;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;

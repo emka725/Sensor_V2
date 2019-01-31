@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Victor;
 import frc.robot.sensors.*;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
@@ -37,7 +38,7 @@ public class RobotMap {
 	private static final int ANALOG_TAPE_SENSOR = 1;
 	private static final int DIGITAL_TAPE_SENSOR = 9;
 
-	private static final int SPARK = 92;
+	private static final int SPARK = 2;
 
 	/**
 	 * Creating motor controller objects
@@ -47,6 +48,7 @@ public class RobotMap {
 
 	public static CANSparkMax spark = new CANSparkMax(SPARK, MotorType.kBrushless);
 	public static CANPIDController pid_controller= spark.getPIDController();
+	public static CANEncoder encoder = spark.getEncoder();
 	
 	/**
 	 * Creating Sensor objects
@@ -57,9 +59,7 @@ public class RobotMap {
 	
 	public static void init() {
 		pid_controller.setP(1);
-		pid_controller.setI(0);
-		pid_controller.setD(0);
-		pid_controller.setFF(0);
-		pid_controller.setReference(0, ControlType.kPosition);
+		pid_controller.setOutputRange(-1, 1);
+		//	pid_controller.setReference(0, ControlType.kPosition);  //  Permanently sets the sensor to the specified position (measured in rotations relative to starting position)
 	}
 }
