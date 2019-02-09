@@ -17,7 +17,8 @@ import edu.wpi.first.wpilibj.Joystick;
 // import frc.robot.XBoxPOVButton;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.TapeDriveCommand;
+import frc.robot.commands.instant.ChangeGlowMode;
+import frc.robot.subsystems.Glow;
 
 public class OI {
 
@@ -42,9 +43,12 @@ public class OI {
 	// -- public Button buttonName = new JoystickButton(controller, BUTTON_NAME);
 	public Button tapeButton = new JoystickButton(l_joy, 2);
 
+	public Button discoButton = new JoystickButton(l_joy, 3);
+
 	public void init() {
 		// Inithalise event handling
 		// -- buttonName.whenHeld(new Command())
 		tapeButton.whileHeld(new TapeDriveCommand());
+		discoButton.whenPressed(new ChangeGlowMode(Glow.Mode.DISCO));
 	}
 }

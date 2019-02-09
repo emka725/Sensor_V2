@@ -1,13 +1,16 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Victor;
 import frc.robot.sensors.*;
-
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Victor;
+import frc.robot.sensors.AnalogTapeSensor;
+import frc.robot.sensors.DigitalTapeSensor;
+import frc.robot.sensors.DistanceSensor;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -40,6 +43,12 @@ public class RobotMap {
 
 	private static final int SPARK = 2;
 
+	//LED pins
+	//TODO set proper pins
+	private static final int R_CHANNEL_RELAY_INT = 2;
+	private static final int G_CHANNEL_RELAY_INT = 0;
+	private static final int B_CHANNEL_RELAY_INT = 1;
+
 	/**
 	 * Creating motor controller objects
 	 */
@@ -56,10 +65,20 @@ public class RobotMap {
 	public static final DistanceSensor distance_sensor = new DistanceSensor(DISTANCE_SENSOR);
 	public static final AnalogTapeSensor analog_tape_sensor = new AnalogTapeSensor(ANALOG_TAPE_SENSOR);
 	public static final DigitalTapeSensor digital_tape_sensor = new DigitalTapeSensor(DIGITAL_TAPE_SENSOR);
+
+	//LED lights
+	public static Relay r_channel_relay;
+	public static Relay g_channel_relay;
+	public static Relay b_channel_relay;
 	
 	public static void init() {
 		pid_controller.setP(1);
 		pid_controller.setOutputRange(-1, 1);
 		//	pid_controller.setReference(0, ControlType.kPosition);  //  Permanently sets the sensor to the specified position (measured in rotations relative to starting position)
+	
+		//set LEDs
+		r_channel_relay = new Relay(R_CHANNEL_RELAY_INT, Relay.Direction.kBoth);
+		g_channel_relay = new Relay(G_CHANNEL_RELAY_INT, Relay.Direction.kBoth);
+		b_channel_relay = new Relay(B_CHANNEL_RELAY_INT, Relay.Direction.kBoth);
 	}
 }
