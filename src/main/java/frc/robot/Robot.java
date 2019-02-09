@@ -7,16 +7,11 @@
 
 package frc.robot;
 
-import frc.robot.OI;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.commands.TestPIDCommand;
-
-import com.revrobotics.ControlType;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.TestPIDCommand;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Glow;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +23,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
   public static final Drivetrain drivetrain = new Drivetrain();
   public static OI oi;
+
+  public static final Glow glow = new Glow();
 
   /**
    * This function is run when the robot is first started up and should be
