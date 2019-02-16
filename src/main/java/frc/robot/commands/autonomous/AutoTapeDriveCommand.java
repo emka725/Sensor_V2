@@ -5,53 +5,47 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-public class TestPIDCommand extends Command {
-	
-  final double DEADZONE = 0.1;
-  
-  public TestPIDCommand() {
+public class AutoTapeDriveCommand extends Command {
+  private double speed;
+
+  public AutoTapeDriveCommand(double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    this.speed = speed;
     requires(Robot.drivetrain);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    ////
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //  Pushing the joysticks forward gives a negative Y value, whereas pushing them backward gives a positive Y value
-    double speed = -Robot.oi.r_joy.getY();
-    if (Math.abs(speed) < DEADZONE) speed = 0;
-    //  RobotMap.spark.set(speed);
+    Robot.drivetrain.drive(speed, speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return RobotMap.digital_tape_sensor.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    ////
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    ////
   }
 }

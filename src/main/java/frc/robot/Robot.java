@@ -9,11 +9,13 @@ package frc.robot;
 
 import frc.robot.OI;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.commands.TapeDriveCommand;
 import frc.robot.commands.TestPIDCommand;
 
 import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,7 +40,6 @@ public class Robot extends IterativeRobot {
     oi = new OI();
     oi.init();
     RobotMap.init();
-    drivetrain.setDefaultCommand(new TestPIDCommand());
   }
 
   /**
@@ -84,6 +85,8 @@ public class Robot extends IterativeRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    SmartDashboard.putNumber("Victor Position", RobotMap.victor_encoder.getDistance());
+    SmartDashboard.putBoolean("Tape Sensor", RobotMap.digital_tape_sensor.get());
   }
 
   /**

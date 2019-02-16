@@ -37,8 +37,10 @@ public class DriveCommand extends Command {
 
     if(Math.abs(lSpeed) < DEADZONE) lSpeed = 0;
     if(Math.abs(rSpeed) < DEADZONE) rSpeed = 0;
+    /*
     SmartDashboard.putNumber("Left Speed", lSpeed);
     SmartDashboard.putNumber("Right Speed", rSpeed);
+    */
     Robot.drivetrain.drive(Math.pow(lSpeed, 3), Math.pow(rSpeed, 3));
   }
 

@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import frc.robot.sensors.*;
 
@@ -40,6 +41,8 @@ public class RobotMap {
 
 	private static final int SPARK = 2;
 
+	private static final int ENCODER_A = 7;
+	private static final int ENCODER_B = 8;
 	/**
 	 * Creating motor controller objects
 	 */
@@ -47,19 +50,24 @@ public class RobotMap {
 	public static Victor right_drive_victor_1 = new Victor(RIGHT_VICTOR_1);
 
 	public static CANSparkMax spark = new CANSparkMax(SPARK, MotorType.kBrushless);
-	public static CANPIDController pid_controller= spark.getPIDController();
-	public static CANEncoder encoder = spark.getEncoder();
+	public static CANPIDController spark_pid_controller= spark.getPIDController();
+	public static CANEncoder spark_encoder = spark.getEncoder();
 	
 	/**
-	 * Creating Sensor objects
+	 * Creating sensor objects
 	 */	
 	public static final DistanceSensor distance_sensor = new DistanceSensor(DISTANCE_SENSOR);
 	public static final AnalogTapeSensor analog_tape_sensor = new AnalogTapeSensor(ANALOG_TAPE_SENSOR);
 	public static final DigitalTapeSensor digital_tape_sensor = new DigitalTapeSensor(DIGITAL_TAPE_SENSOR);
 	
+	/**
+	 * Creating encoder objects
+	 */
+	public static final Encoder victor_encoder = new Encoder(ENCODER_A,ENCODER_B);
+
 	public static void init() {
-		pid_controller.setP(1);
-		pid_controller.setOutputRange(-1, 1);
-		//	pid_controller.setReference(0, ControlType.kPosition);  //  Permanently sets the sensor to the specified position (measured in rotations relative to starting position)
+		spark_pid_controller.setP(1);
+		spark_pid_controller.setOutputRange(-1, 1);
+		spark_pid_controller.setReference(0, ControlType.kPosition);  //  Permanently sets the sensor to the specified position (measured in rotations relative to starting position)
 	}
 }

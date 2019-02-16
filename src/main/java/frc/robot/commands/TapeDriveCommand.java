@@ -38,11 +38,10 @@ public class TapeDriveCommand extends Command {
     
     if (RobotMap.digital_tape_sensor.get()) {
       Robot.drivetrain.drive(0, 0);
-      System.out.println("TAPE");
+      //  System.out.println("TAPE");
     } else {
-      //  Robot.drivetrain.drive(Math.pow(lSpeed, 3), Math.pow(rSpeed, 3));
-      Robot.drivetrain.drive(0, 0);
-      System.out.println("NOT tape");
+      Robot.drivetrain.drive(Math.pow(lSpeed, 3), Math.pow(rSpeed, 3));
+      //  System.out.println("NOT tape");
     }
   }
 

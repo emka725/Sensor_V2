@@ -40,7 +40,7 @@ public class OI {
 
 	// button initialization
 	// -- public Button buttonName = new JoystickButton(controller, BUTTON_NAME);
-	public Button tapeButton = new JoystickButton(l_joy, 2);
+	public Button tapeButton = new JoystickButton(l_joy, 1);
 
 	public void init() {
 		// Inithalise event handling
